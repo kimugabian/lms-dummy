@@ -5,6 +5,7 @@ import { getCourses } from "@/actions/get-courses";
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { CoursesList } from "@/components/courses-list";
+import { Suspense } from "react";
 
 interface SearchPageProps {
     searchParams: Promise<{
@@ -14,6 +15,18 @@ interface SearchPageProps {
 }
 
 const SearchPage = async ({
+    searchParams
+}: SearchPageProps) => {
+   return (
+    <Suspense>
+    <Search 
+    searchParams={searchParams}
+    />
+    </Suspense>
+   )
+}
+
+const Search = async ({
     searchParams
 }: SearchPageProps) => {
     const {userId} = await auth();
@@ -50,5 +63,6 @@ const SearchPage = async ({
         </>
     );
 }
+
  
 export default SearchPage;
