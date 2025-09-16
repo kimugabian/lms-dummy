@@ -6,9 +6,10 @@ import { ur } from "zod/v4/locales";
 
 export async function POST(
     req: Request,
-    {params}: {params: {courseId: string}}
+    context : {params: Promise<{courseId: string}>}
 ) {
     try{
+        const {courseId} = await context.params
         const {userId} = await auth();
         const {url} = await req.json();
 
@@ -18,7 +19,7 @@ export async function POST(
 
         const courseOwner = await db.course.findUnique({
             where: {
-                id: params.courseId,
+                id: courseId,
                 userId: userId,
             }
         })
@@ -31,7 +32,7 @@ export async function POST(
             data: {
                 url,
                 name: url.split("/").pop(),
-                courseId: params.courseId
+                courseId: courseId
             }
         })
 
