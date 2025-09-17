@@ -4,10 +4,10 @@ import { NextResponse } from "next/server";
 
 export async function PUT(
     req: Request,
-    context: {params: Promise<{courseId: string; chapterId: string}>}
+    context: {params: Promise<{ courseId: string; chapterId: string }>}
 ) {
     try {
-        const {courseId, chapterId} = await context.params
+        const {chapterId, courseId} = await context.params
         const {userId} = await auth()
         const {isCompleted} = await req.json()
 

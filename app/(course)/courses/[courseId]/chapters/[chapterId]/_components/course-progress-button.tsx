@@ -52,7 +52,7 @@ export const CourseProgressButton = ({
     }
 
 
-    const Icon = isCompleted ? XCircle :CheckCircle
+    const Icon = isCompleted ? XCircle : CheckCircle
 
     return (
         <Button

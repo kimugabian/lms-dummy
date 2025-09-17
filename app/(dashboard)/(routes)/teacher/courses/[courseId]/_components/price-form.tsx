@@ -82,8 +82,8 @@ export const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
           !initialData.price && "text-slate-500 italic"
         )}>
           {initialData.price
-          ? formatPrice(initialData.price)
-          : "No price"
+           ? formatPrice(initialData.price)
+           : "No price"
           }
         </p>
       )}
